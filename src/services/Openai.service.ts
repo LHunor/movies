@@ -1,5 +1,4 @@
 import OpenAI from "openai";
-import { v4 as uuidv4 } from "uuid";
 
 let openai: OpenAI;
 
@@ -17,10 +16,7 @@ const generateDescription = async (movie: { name: string; year: number }) => {
     ],
     model: "gpt-3.5-turbo",
   });
-  return {
-    id: uuidv4(),
-    result: completion.choices[0].message.content,
-  };
+  return completion.choices[0].message.content ?? "";
 };
 
 export default { init, generateDescription };
